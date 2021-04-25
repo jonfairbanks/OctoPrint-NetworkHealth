@@ -1,0 +1,4 @@
+include README.md
+recursive-include octoprint_wifihealth/templates *
+recursive-include octoprint_wifihealth/translations *
+recursive-include octoprint_wifihealth/static *
