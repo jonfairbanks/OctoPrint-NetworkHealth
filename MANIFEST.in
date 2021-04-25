@@ -1,4 +1,4 @@
 include README.md
-recursive-include octoprint_networkhealth/templates *
-recursive-include octoprint_networkhealth/translations *
-recursive-include octoprint_networkhealth/static *
+recursive-include octoprint_NetworkHealth/templates *
+recursive-include octoprint_NetworkHealth/translations *
+recursive-include octoprint_NetworkHealth/static *
