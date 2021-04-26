@@ -46,3 +46,22 @@ def __init__():
             os.system(reset_eth0)
             time.sleep(180)
             continue
+
+def get_update_information(*args, **kwargs):
+    return dict(
+        updateplugindemo=dict(
+            displayName=self._plugin_name,
+            displayVersion=self._plugin_version,
+
+            type="github_release",
+            current=self._plugin_version,
+            user="jonfairbanks",
+            repo="OctoPrint-NetworkHealth",
+
+            pip="https://github.com/jonfairbanks/OctoPrint-NetworkHealth/archive/{target}.zip"
+        )
+    )
+
+__plugin_hooks__ = {
+"octoprint.plugin.softwareupdate.check_config": get_update_information
+}
