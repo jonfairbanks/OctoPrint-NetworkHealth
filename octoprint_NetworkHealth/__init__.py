@@ -4,7 +4,7 @@ import octoprint
 
 from octoprint.util import RepeatedTimer
 
-class NetworkHealthPlugin(octoprint.plugin.StartupPlugin):
+class NetworkHealthPlugin(octoprint.plugin.StartupPlugin, octoprint.plugin.RestartNeedingPlugin):
     def __init__(self):
         self._timer = None
 
