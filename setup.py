@@ -5,7 +5,7 @@
 plugin_identifier = "networkhealth"
 plugin_package = "octoprint_NetworkHealth"
 plugin_name = "OctoPrint-NetworkHealth"
-plugin_version = "1.0.0"
+plugin_version = "1.0.3"
 plugin_description = """Monitors the health of the Network connection and restarts it if necessary"""
 plugin_author = "Jon Fairbanks"
 plugin_author_email = "jon@fairbanks.io"
