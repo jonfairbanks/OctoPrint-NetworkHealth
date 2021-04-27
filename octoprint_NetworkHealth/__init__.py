@@ -17,8 +17,8 @@ class NetworkHealthPlugin(octoprint.plugin.StartupPlugin, octoprint.plugin.Resta
         try:
               if not check_ping():
                   self._logger.error("No Network Connection - Resetting Adapter(s)...")
-                  reset_wlan0 = 'ip link set wlan0 down; ip link set wlan0 up'
-                  reset_eth0  = 'ip link set eth0 down; ip link set eth0 up'
+                  reset_wlan0 = 'sudo ip link set wlan0 down; sudo ip link set wlan0 up'
+                  reset_eth0  = 'sudo ip link set eth0 down; sudo ip link set eth0 up'
                   os.system(reset_wlan0)
                   os.system(reset_eth0)
         except Exception:
