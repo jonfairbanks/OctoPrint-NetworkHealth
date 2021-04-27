@@ -1,5 +1,6 @@
 import os
 import time
+import octoprint
 
 from octoprint.util import RepeatedTimer
 
