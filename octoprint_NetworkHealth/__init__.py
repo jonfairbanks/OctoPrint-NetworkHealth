@@ -15,7 +15,7 @@ class NetworkHealthPlugin(octoprint.plugin.StartupPlugin, octoprint.plugin.Resta
 
     def _check_network(self):
         try:
-              if not check_ping():
+              if not self.check_ping():
                   self._logger.error("No Network Connection - Resetting Adapter(s)...")
                   reset_wlan0 = 'sudo ip link set wlan0 down; sudo ip link set wlan0 up'
                   reset_eth0  = 'sudo ip link set eth0 down; sudo ip link set eth0 up'
@@ -24,7 +24,7 @@ class NetworkHealthPlugin(octoprint.plugin.StartupPlugin, octoprint.plugin.Resta
         except Exception:
             self._logger.exception("Could not run network health check")
 
-    def get_update_information(self, *args, **kwargs):
+    def get_update_information(self):
         return dict(
             networkhealth=dict(
                 displayName=self._plugin_name,
@@ -39,7 +39,7 @@ class NetworkHealthPlugin(octoprint.plugin.StartupPlugin, octoprint.plugin.Resta
             )
         )
 
-    def default_gateway():
+    def default_gateway(self):
         import socket
         import struct
         with open("/proc/net/route") as fh:
@@ -49,8 +49,8 @@ class NetworkHealthPlugin(octoprint.plugin.StartupPlugin, octoprint.plugin.Resta
                     continue
                 return socket.inet_ntoa(struct.pack("<L", int(fields[2], 16)))
 
-    def check_ping():
-        hostname = default_gateway()
+    def check_ping(self):
+        hostname = self.default_gateway()
         response = os.system("ping -c 4 " + hostname)
         if response == 0:
             return True
