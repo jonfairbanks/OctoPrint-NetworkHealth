@@ -59,7 +59,7 @@ class NetworkHealthPlugin(octoprint.plugin.StartupPlugin, octoprint.plugin.Resta
 
 
 __plugin_name__ = "Network Health Monitor"
-__plugin_version__ = "1.0.2"
+__plugin_version__ = "1.0.3"
 __plugin_description__ = "Monitors the health of the Network connection and restarts it if necessary"
 __plugin_pythoncompat__ = ">=2.7,<4"
 
