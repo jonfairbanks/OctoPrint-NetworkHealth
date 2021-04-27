@@ -39,24 +39,23 @@ class NetworkHealthPlugin(octoprint.plugin.StartupPlugin, octoprint.plugin.Resta
             )
         )
 
+    def default_gateway():
+        import socket
+        import struct
+        with open("/proc/net/route") as fh:
+            for line in fh:
+                fields = line.strip().split()
+                if fields[1] != '00000000' or not int(fields[3], 16) & 2:
+                    continue
+                return socket.inet_ntoa(struct.pack("<L", int(fields[2], 16)))
 
-def default_gateway():
-    import socket
-    import struct
-    with open("/proc/net/route") as fh:
-        for line in fh:
-            fields = line.strip().split()
-            if fields[1] != '00000000' or not int(fields[3], 16) & 2:
-                continue
-            return socket.inet_ntoa(struct.pack("<L", int(fields[2], 16)))
-
-def check_ping():
-    hostname = default_gateway()
-    response = os.system("ping -c 4 " + hostname)
-    if response == 0:
-        return True
-    else:
-        return False
+    def check_ping():
+        hostname = default_gateway()
+        response = os.system("ping -c 4 " + hostname)
+        if response == 0:
+            return True
+        else:
+            return False
 
 
 __plugin_name__ = "Network Health Monitor"
