@@ -51,6 +51,9 @@ class NetworkHealthPlugin(octoprint.plugin.StartupPlugin, octoprint.plugin.Resta
 
     def check_ping(self):
         hostname = self.default_gateway()
+        if hostname is None:
+            self._logger.info("Failed to determine default gateway; using 8.8.8.8 instead...")
+            hostname = "8.8.8.8"
         response = os.system("ping -c 4 " + hostname)
         if response == 0:
             return True
